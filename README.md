@@ -23,10 +23,14 @@ Follow the guide at https://charmed-kubeflow.io/docs/get-started-with-charmed-ku
 
 ### 4. Deploy Kubeflow Ingress
 Create a file named kubeflow-ingress.yaml. My file is given in this repo. Apply using the below command
-# microk8s kubectl apply -f kubeflow-ingress.yaml
+```sh
+microk8s kubectl apply -f kubeflow-ingress.yaml
+```
 
 ### 5. Port Forward Ingress to Local Machine
-# microk8s kubectl port-forward -n kubeflow svc/istio-ingressgateway-workload 8080:80
+```sh
+microk8s kubectl port-forward -n kubeflow svc/istio-ingressgateway-workload 8080:80
+```
 Access the Kubeflow dashboard on your local PC using http://localhost:8080.
 
 ### 6. Get ClusterIP for Minio
