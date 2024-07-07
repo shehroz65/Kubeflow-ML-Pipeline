@@ -16,6 +16,7 @@ Create an Azure VM with the following specifications:
 Use your private key to SSH into the VM:
 ```sh
 ssh -i /path/to/your/private-key.pem username@your-vm-ip
+```
 
 ### 3. Install MicroK8s and Kubeflow
 Follow the guide at https://charmed-kubeflow.io/docs/get-started-with-charmed-kubeflow to install MicroK8s and Kubeflow.
@@ -55,3 +56,4 @@ For example, in Python:
 import base64
 access_key = base64.b64decode("bWluaW8=").decode('utf-8')
 secret_key = base64.b64decode("RDZOWTFEN1JSVVc3NklQUjNHOTJGNUNUVUZCTUhG").decode('utf-8')
+```
