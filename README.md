@@ -30,22 +30,30 @@ Create a file named kubeflow-ingress.yaml. My file is given in this repo. Apply 
 Access the Kubeflow dashboard on your local PC using http://localhost:8080.
 
 ### 6. Get ClusterIP for Minio
-# microk8s kubectl get svc -n kubeflow
+```sh
+microk8s kubectl get svc -n kubeflow
+```
 Note the ClusterIP for Minio (used for saving the model).
 
 ### 7. Create Minio Service with NodePort
 Create a file named minionew.yaml . My file is given in this repo.Apply the Minio service configuration:
-# microk8s kubectl apply -f minionew.yaml
-
+```sh
+microk8s kubectl apply -f minionew.yaml
+```
 ### 8. Port Forward Minio to Local Machine
-# microk8s kubectl port-forward -n kubeflow svc/minio 9000:9000 9001:9001
+```sh
+microk8s kubectl port-forward -n kubeflow svc/minio 9000:9000 9001:9001
+```
 In a separate terminal, forward the ports via SSH:
-# ssh -i /path/to/your/private-key.pem -L 9000:localhost:9000 -L 9001:localhost:9001 username@your-vm-ip
+```sh
+ssh -i /path/to/your/private-key.pem -L 9000:localhost:9000 -L 9001:localhost:9001 username@your-vm-ip
+```
 
 ### 9. Get Minio Access and Secret Keys
-# microk8s kubectl get secret mlpipeline-minio-artifact -n kubeflow -o jsonpath="{.data.accesskey}" | base64 --decode
-# microk8s kubectl get secret mlpipeline-minio-artifact -n kubeflow -o jsonpath="{.data.secretkey}" | base64 --decode
-
+```sh
+microk8s kubectl get secret mlpipeline-minio-artifact -n kubeflow -o jsonpath="{.data.accesskey}" | base64 --decode
+microk8s kubectl get secret mlpipeline-minio-artifact -n kubeflow -o jsonpath="{.data.secretkey}" | base64 --decode
+```
 ### 10. Access Minio Console Dashboard
 Access the Minio console dashboard at http://localhost:9001/login.
 
