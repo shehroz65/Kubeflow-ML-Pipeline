@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    controller.juju.is/id: c87899a7-3ca8-4b13-825d-26a7c4ec29fb
+    model.juju.is/id: db1ddad3-78dd-458c-814f-5e4177d2ce84
+  labels:
+    app.kubernetes.io/managed-by: juju
+    app.kubernetes.io/name: minio
+  name: minio
+  namespace: kubeflow
+spec:
+  type: NodePort
+  ports:
+  - name: minio
+    port: 9000
+    protocol: TCP
+    targetPort: 9000
+    nodePort: 30000 # Specify the nodePort value
+  - name: console
+    port: 9001
+    protocol: TCP
+    targetPort: 9001
+    nodePort: 30001 # Specify the nodePort value
+  selector:
+    app.kubernetes.io/name: minio
+  clusterIP: 10.152.183.29
+  clusterIPs:
+  - 10.152.183.29
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+status:
+  loadBalancer: {}
